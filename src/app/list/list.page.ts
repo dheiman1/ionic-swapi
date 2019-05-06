@@ -35,7 +35,10 @@ export class ListPage implements OnInit {
       data => {
         console.log(data);
         // Cast data to <any> to avoid typescript error
-        this.items = (<any> data).results.map(x => x.name).sort();
+        this.items = [
+          ...this.items
+          , ...(<any> data).results.map(x => x.name)
+        ].sort();
       }
       , error => console.log(error)
     );
